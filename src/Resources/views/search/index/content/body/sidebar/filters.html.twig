@@ -1,0 +1,41 @@
+{% set result = hookable_metadata.context.result %}
+<div class="d-flex flex-column gap-3 mbiz-sylius-search-filters">
+    <div class="fw-bold fs-5">
+        {{ 'monsieurbiz_searchplugin.filters.filter_results'|trans }}
+    </div>
+
+    {% if result.filters|length == 0 %}
+        <div class="text-muted">
+            {{ 'monsieurbiz_searchplugin.filters.no_filter'|trans }}
+        </div>
+    {% else %}
+        {% set searchQuery = app.request.attributes.get('_route_params').query|default('') %}
+        {% set path = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({query: searchQuery})) %}
+
+        <form name="filters-form" method="GET" action="{{ path }}" class="d-flex flex-column gap-3">
+
+            {% for filter in result.filters %}
+                {% include [
+                    '@MonsieurBizSyliusSearchPlugin/Search/Filter/'~filter.type~'.html.twig',
+                    '@MonsieurBizSyliusSearchPlugin/Search/Filter/default.html.twig'
+                ] with {
+                    'filter': filter,
+                    'currencySymbol': hookable_metadata.context.currencySymbol
+                } %}
+
+            {% endfor %}
+
+            {% set documentType = app.request.query.all()['document_type']|default() %}
+            {% if documentType is not empty %}
+                <input type="hidden" name="document_type" value="{{ documentType|escape('html_attr') }}">
+            {% endif %}
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary d-inline-flex align-items-center justify-content-center gap-2">
+                    {{ ux_icon('tabler:search', {class: 'icon icon-sm'}) }}
+                    {{ 'monsieurbiz_searchplugin.filters.apply_filters'|trans }}
+                </button>
+            </div>
+        </form>
+    {% endif %}
+</div>

@@ -1,0 +1,141 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_shop.search.index':
+            content:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content.html.twig'
+                priority: 0
+        
+        'sylius_shop.search.index.content':
+            body:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body.html.twig'
+                priority: 0
+
+        'sylius_shop.search.index.content.body':
+            sidebar:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/sidebar.html.twig'
+                priority: 100
+            main:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main.html.twig'
+                priority: 0
+
+        'sylius_shop.search.index.content.body.sidebar':
+            filters:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/sidebar/filters.html.twig'
+                priority: 0
+
+
+        'sylius_shop.search.index.content.body.main':
+            filters:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters.html.twig'
+                priority: 200
+            products:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/products.html.twig'
+                priority: 100
+            pagination:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/pagination.html.twig'
+                priority: 0
+
+        'sylius_shop.search.index.content.body.main.header':
+            image:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/header/image.html.twig'
+                priority: 300
+            name:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/header/name.html.twig'
+                priority: 100
+            description:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/header/description.html.twig'
+                priority: 0
+
+        'sylius_shop.search.index.content.body.main.filters':
+            controls:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls.html.twig'
+                priority: 0
+
+        'sylius_shop.search.index.content.body.main.filters.search':
+            filter:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/search/filter.html.twig'
+                priority: 200
+            submit:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/search/submit.html.twig'
+                priority: 100
+            clear:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/search/clear.html.twig'
+                priority: 0
+
+        'sylius_shop.search.index.content.body.main.filters.controls':
+            limit:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/limit.html.twig'
+                priority: 100
+            sort:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting.html.twig'
+                priority: 0
+
+        'sylius_shop.search.index.content.body.main.filters.controls.limit':
+            toggle:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/limit/toggle.html.twig'
+                priority: 100
+            menu:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/limit/menu.html.twig'
+                priority: 0
+
+        'sylius_shop.search.index.content.body.main.filters.controls.sorting':
+            toggle:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting/toggle.html.twig'
+                priority: 100
+            menu:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting/menu.html.twig'
+                priority: 0
+
+        'sylius_shop.search.index.content.body.main.filters.controls.sorting.menu':
+            default:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting/menu/item.html.twig'
+                configuration:
+                    title: 'sylius.ui.by_position'
+                    sorting: ''
+                priority: 600
+            a_to_z:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting/menu/item.html.twig'
+                configuration:
+                    title: 'sylius.ui.from_a_to_z'
+                    sorting:
+                        name: 'sorting'
+                        value:
+                            name: 'asc'
+                priority: 500
+            z_to_a:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting/menu/item.html.twig'
+                configuration:
+                    title: 'sylius.ui.from_z_to_a'
+                    sorting:
+                        name: 'sorting'
+                        value:
+                            name: 'desc'
+                priority: 400
+            newest:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting/menu/item.html.twig'
+                configuration:
+                    title: 'sylius.ui.newest_first'
+                    sorting:
+                        createdAt: 'desc'
+                priority: 300
+            oldest:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting/menu/item.html.twig'
+                configuration:
+                    title: 'sylius.ui.oldest_first'
+                    sorting:
+                        createdAt: 'asc'
+                priority: 200
+            cheapest:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting/menu/item.html.twig'
+                configuration:
+                    title: 'sylius.ui.cheapest_first'
+                    sorting:
+                        price: 'asc'
+                priority: 100
+            most_expensive:
+                template: '@MonsieurBizSyliusSearchPlugin/search/index/content/body/main/filters/controls/sorting/menu/item.html.twig'
+                configuration:
+                    title: 'sylius.ui.most_expensive_first'
+                    sorting:
+                        price: 'desc'
+                priority: 0

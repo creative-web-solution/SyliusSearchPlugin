@@ -1,0 +1,29 @@
+<div class="border-top pt-3">
+    <div class="filter-item" id="{{ 'filter-' ~ filter.code }}">
+        <div class="fw-bold mb-2">{{ filter.label|trans }}</div>
+
+        <div class="filter-values d-flex flex-column gap-2">
+            {% for value in filter.values %}
+                {% set valueType = filter.valueType(value.label) %}
+                {% set inputValue = value.isApplied ? value.value : '' %}
+                {% set placeholderValue = value.isApplied ? filter.defaultValue(valueType) : value.value %}
+                {% set inputId = 'filter-' ~ filter.code ~ '-' ~ valueType %}
+
+                <div class="filter-value">
+                    <label for="{{ inputId }}" class="form-label mb-1">{{ value.label|trans }}</label>
+                    <div class="input-group">
+                        <span class="input-group-text">{{ currencySymbol }}</span>
+                        <input
+                                class="form-control"
+                                type="number"
+                                id="{{ inputId }}"
+                                name="{{ filter.code ~ '[' ~ valueType ~ ']' }}"
+                                value="{{ inputValue }}"
+                                placeholder="{{ placeholderValue }}"
+                        >
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

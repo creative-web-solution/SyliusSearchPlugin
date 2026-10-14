@@ -1,21 +1,36 @@
-{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% import '@SyliusShop/shared/macro/money.html.twig' as money %}
 
-<div class="result">
-    <a href="{{ path('sylius_shop_product_show', {'slug': item.slug, '_locale': sylius.localeCode}) }}" class="ui tiny image">
-        {% if item.images|first %}
-            {% set path = item.images|first.path|imagine_filter(filter|default('sylius_shop_product_thumbnail')) %}
-        {% else %}
-            {% set path = '//placehold.it/200x200' %}
-        {% endif %}
+{% set product_url = path('sylius_shop_product_show', {'slug': item.slug, '_locale': sylius.localeCode}) %}
 
-        <img src="{{ path }}" alt="{{ item.name }}"/>
+{% if item.images|first %}
+    {% set image_path = item.images|first.path|imagine_filter(filter|default('sylius_shop_product_thumbnail')) %}
+{% else %}
+    {% set image_path = asset('bundles/syliusshop/images/200x200.png') %}
+{% endif %}
+
+<div class="result d-flex align-items-center gap-3 p-2 border-bottom">
+    <a href="{{ product_url }}" class="flex-shrink-0">
+        <img
+                src="{{ image_path }}"
+                alt="{{ item.name }}"
+                class="img-fluid rounded"
+                style="width: 64px; height: 64px; object-fit: cover;"
+                loading="lazy"
+        />
     </a>
-    <div class="content">
-        <a href="{{ path('sylius_shop_product_show', {'slug': item.slug, '_locale': sylius.localeCode}) }}" class="header sylius-product-name">{{ item.name }}</a>
+
+    <div class="content flex-grow-1">
+        <a href="{{ product_url }}" class="d-block fw-semibold text-decoration-none text-body sylius-product-name">
+            {{ item.name }}
+        </a>
 
         {% if item.prices is not empty %}
-            {% set pricing = item.prices|filter(price => price.channelCode == sylius.channel.code)|first %}
-            <div class="sylius-product-price">{{ money.convertAndFormat(pricing.price) }}</div>
+            {% set pricing = item.prices|filter(price => price.channel_code == sylius.channel.code)|first %}
+            {% if pricing %}
+                <div class="text-muted small sylius-product-price">
+                    {{ money.convertAndFormat(pricing.price) }}
+                </div>
+            {% endif %}
         {% endif %}
     </div>
 </div>

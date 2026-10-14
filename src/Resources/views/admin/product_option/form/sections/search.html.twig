@@ -1,0 +1,26 @@
+{% set form = hookable_metadata.context.form %}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="card-title">{{ 'monsieurbiz_searchplugin.admin.product_option.form.title'|trans }}</div>
+    </div>
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-4">
+                <div class="mb-3 field">
+                    {{ form_row(form.searchable) }}
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3 field">
+                    {{ form_row(form.filterable) }}
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3 field">
+                    {{ form_row(form.search_weight) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

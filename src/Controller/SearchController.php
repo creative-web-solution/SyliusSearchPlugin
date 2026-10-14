@@ -65,7 +65,7 @@ class SearchController extends AbstractController
         $result = $this->search->search(requestConfiguration: $requestConfiguration);
 
         return $this->render(
-            view: '@MonsieurBizSyliusSearchPlugin/Search/result.html.twig',
+            view: '@MonsieurBizSyliusSearchPlugin/search/index.html.twig',
             parameters: [
                 'documentableRegistries' => $this->getSearchEnabledDocumentables(),
                 'documentable' => $result->getDocumentable(),
@@ -156,7 +156,7 @@ class SearchController extends AbstractController
         $result = $this->search->search(requestConfiguration: $requestConfiguration);
 
         return $this->render(
-            view: '@MonsieurBizSyliusSearchPlugin/Taxon/result.html.twig',
+            view: '@MonsieurBizSyliusSearchPlugin/taxon/index.html.twig',
             parameters: [
                 'requestConfiguration' => $requestConfiguration,
                 'result' => $result,

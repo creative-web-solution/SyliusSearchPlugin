@@ -56,7 +56,7 @@ final class Indexer implements IndexerInterface
 
         /** @var DocumentableInterface $documentable */
         foreach ($this->documentableRegistry->all() as $documentable) {
-            $documentable instanceof PrefixedDocumentableInterface && [] !== $documentable->getPrefix() ?
+            $documentable instanceof PrefixedDocumentableInterface && !empty($documentable->getPrefix()) ?
                 $output->writeln(\sprintf('Indexing <info>%s</info> (Prefix: <info>%s</info>)', $documentable->getIndexCode(), $documentable->getPrefix())) :
                 $output->writeln(\sprintf('Indexing <info>%s</info>', $documentable->getIndexCode()));
 

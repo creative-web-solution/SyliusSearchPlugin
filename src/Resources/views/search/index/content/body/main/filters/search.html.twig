@@ -1,0 +1,7 @@
+<div class="col">
+    <form method="get" action="{{ path(app.request.attributes.get('_route'), {'slug': app.request.attributes.get('slug')}) }}">
+        <div class="input-group">
+            {% hook 'search' %}
+        </div>
+    </form>
+</div>

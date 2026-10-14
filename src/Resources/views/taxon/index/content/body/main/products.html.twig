@@ -1,0 +1,15 @@
+{% import '@SyliusShop/shared/messages.html.twig' as messages %}
+
+{% set result = hookable_metadata.context.result %}
+
+{% set paginator = result.paginator %}
+
+{% if paginator.nbResults > 0 %}
+    <div class="products-grid" {{ sylius_test_html_attribute('products') }}>
+        {% for item in result %}
+            {% include result.documentable.template('item') with {'product': item.model} %}
+        {% endfor %}
+    </div>
+{% else %}
+    {{ messages.info('sylius.ui.no_results_to_display') }}
+{% endif %}
