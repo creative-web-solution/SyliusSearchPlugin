@@ -82,9 +82,9 @@ class SearchableFixtureFactory extends AbstractExampleFactory implements Searcha
     {
         $object = null;
 
-        if ([] !== $options['attribute']) {
+        if (null !== $options['attribute']) {
             $object = $options['attribute'];
-        } elseif ([] !== $options['option']) {
+        } elseif (null !== $options['option']) {
             $object = $options['option'];
         }
 

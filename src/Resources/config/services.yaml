@@ -278,3 +278,13 @@ services:
     arguments:
       - '@MonsieurBiz\SyliusSearchPlugin\Routing\RequestContext.inner'
       - '@monsieurbiz.search.checker.elasticsearch_checker'
+
+  MonsieurBiz\SyliusSearchPlugin\Twig\Component\Product\CardComponent:
+    arguments:
+      - '@sylius.repository.product'
+      - '@MonsieurBiz\SyliusSearchPlugin\Resolver\CheapestProductVariantResolver'
+      - '@sylius.context.channel'
+      - '@sylius.context.locale'
+      - '@sylius.calculator.product_variant_catalog_price'
+    tags:
+      - { name: sylius.twig_component, key: 'monsieurbiz:search:product:card' }

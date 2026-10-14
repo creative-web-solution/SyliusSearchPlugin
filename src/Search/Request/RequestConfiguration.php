@@ -40,13 +40,21 @@ final class RequestConfiguration
     public function getQueryText(): string
     {
         $query = $this->request->query
-            ->getString(
-                key: 'query',
-                default: $this->request->attributes->getString(key: 'query')
-            );
+            ->getString(key: 'query');
+
+        if ('' === $query) {
+            $query = $this->request->attributes
+                ->getString(key: 'query');
+        }
+
+        if ('' === $query) {
+            $query = $this->request->request
+                ->getString(key: 'query');
+        }
+
         return trim(
             string: urldecode(
-                string: $query,
+                string: (string) $query,
             ),
         );
     }

@@ -1,0 +1,5 @@
+{{ component('monsieurbiz:search:product:card', {
+    slug: item.slug,
+    template: hookable_metadata.configuration.product_template|default('@SyliusShop/product/common/card.html.twig'),
+    hookableMetadata: hookable_metadata,
+}) }}

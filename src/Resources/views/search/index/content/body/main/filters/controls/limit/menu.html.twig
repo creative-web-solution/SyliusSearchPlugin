@@ -1,0 +1,9 @@
+{% set paginator = hookable_metadata.context.result.paginator %}
+{% set pagination_limits = hookable_metadata.context.requestConfiguration.availableLimits %}
+
+<div class="dropdown-menu dropdown-menu-end">
+    {% for limit in pagination_limits|filter(limit => limit != paginator.maxPerPage) %}
+        {% set path = path(app.request.attributes.get('_route'), app.request.attributes.all('_route_params')|merge(app.request.query.all)|merge({'limit': limit})) %}
+        <a class="dropdown-item" href="{{ path }}">{{ limit }}</a>
+    {% endfor %}
+</div>

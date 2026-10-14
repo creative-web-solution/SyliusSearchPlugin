@@ -1,0 +1,7 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.product_option.create.content.form.sections':
+            search:
+                template: '@MonsieurBizSyliusSearchPlugin/admin/product_option/form/sections/search.html.twig'
+                priority: 150
+

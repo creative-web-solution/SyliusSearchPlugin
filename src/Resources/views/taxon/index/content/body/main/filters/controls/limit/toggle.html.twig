@@ -1,0 +1,5 @@
+{% set paginator = hookable_metadata.context.result.paginator %}
+
+<button type="button" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+    <span class="text-black-50">{{ 'sylius.ui.show'|trans }}: </span>{{ paginator.maxPerPage }}
+</button>
